@@ -1,6 +1,6 @@
 ---
 description: Converts user inputs or chat history into concise cheatsheets and memory aids
-mode: subagent
+mode: primary
 temperature: 0.2
 tools:
   read: true

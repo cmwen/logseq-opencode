@@ -47,6 +47,25 @@ LogSeq uses a **block-based structure** where every entry is a block. LLMs shoul
 - **Links**: Use `[[Page Name]]` format
 - **Code blocks**: Use triple backticks normally
 
+### Flashcards
+- LogSeq supports spaced repetition flashcards with the `#card` tag
+- Cards automatically track review metrics and schedule next reviews
+- **Card metadata fields**:
+  - `card-last-interval` - Days since last review
+  - `card-repeats` - Number of times card has been reviewed
+  - `card-ease-factor` - Difficulty multiplier (default 2.5)
+  - `card-next-schedule` - ISO 8601 timestamp of next review
+  - `card-last-reviewed` - ISO 8601 timestamp of last review
+  - `card-last-score` - Last review score (1-5)
+- **Card structure**: A block tagged with `#card` becomes the question; child blocks are answers
+- **Example**: 
+  ```markdown
+  - What is the capital of Australia? #card
+    - Sydney is the largest city, but Canberra is the capital
+  ```
+- After review, LogSeq updates all metadata automatically based on spaced repetition algorithm (SM-2)
+- Cards can be nested and appear in the card review interface
+
 ### File Naming For Page Grouping
 - LogSeq will display pages in a hierarchical/grouped fashion when you encode groups into filenames using the triple-underscore separator: `GROUP___Page Name.md`.
 - Convention: `GROUP___Page` maps to `GROUP/Page` in LogSeq. This makes it easy to find sibling pages under the same `GROUP`.
