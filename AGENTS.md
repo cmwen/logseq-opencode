@@ -7,8 +7,9 @@ A LogSeq graph for persistent knowledge management with specialized LLM agents. 
 
 ### Directories
 - **`pages/`** - Permanent notes and agent chat histories
-- **`journals/`** - Daily journal entries (YYYY_MM_DD.md format)
+- **`journals/`** - Daily journal entries (YYYY_MM_DD.md format). To tag/link a page to a journal date from within a page, use the LogSeq date-link format `[[Jan 17th, 2026]]`.
 - **`logseq/`** - LogSeq configuration
+- **`whiteboards/`** - LogSeq whiteboard files (EDN format) for visual diagrams and interactive boards
 
 ## LogSeq Block Format
 
@@ -81,5 +82,3 @@ LogSeq uses a **block-based structure** where every entry is a block. LLMs shoul
   - Easier navigation: browse a group to see all sibling pages.
   - Logical organization without changing directory structure.
   - Works well with LogSeq search and backlinks to surface related notes.
-
-(End of AGENTS.md)

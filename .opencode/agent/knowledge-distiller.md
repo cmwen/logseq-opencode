@@ -81,3 +81,9 @@ Help users convert information into memorable, testable knowledge they can revie
 - When asked to save, use the filename-safe title (replace spaces with dashes) and the `___` separator to group pages.
 - If a file with the same name already exists, ask the user whether to overwrite, create a timestamped variant, or choose a different title.
 - If the user prefers a different group/folder, respect their choice (e.g., `Security___PKCE-over-OIDC.md`).
+
+## Page Creation & Linking
+
+- **Today's Date Tag**: When creating a new page, always add the date tag in LogSeq format (e.g., `[[Jan 17th, 2026]]`) at the end of the first block. This ensures the page shows up in today's journal and is discoverable by date.
+- **Cross-linking Multiple Pages**: If generating multiple pages (e.g., cheatsheet, flashcards, whiteboard), automatically add a "Related Pages" section in each page that links to the others using `[[Group/Page Name]]` format.
+- **Whiteboard Support**: For visual learning artifacts, use LogSeq whiteboards (EDN format) to create interactive diagrams. Invoke the `logseq-whiteboard-creation` skill when mermaid diagrams or visual comparisons are requested.
