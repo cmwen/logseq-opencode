@@ -1,0 +1,738 @@
+{:blocks (
+  ; Title
+  {:block/created-at 1768611047550
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "title-oauth2"
+     :type "text"
+     :text "OAuth 2.0 Authorization Flow"
+     :point [400 20]
+     :size [800 60]
+     :isSizeLocked true
+     :stroke ""
+     :strokeWidth 2
+     :fill ""
+     :noFill true
+     :opacity 1
+     :fontSize 60
+     :fontFamily "var(--ls-font-family)"
+     :fontWeight 700
+     :italic false
+     :lineHeight 1.2
+     :padding 4
+     :scale [1 1]
+     :scaleLevel "xxl"
+     :parentId "page-oauth2-uuid"
+     :index 0
+     :nonce 1768611047550}}
+   :block/updated-at 1768611047550}
+  
+  ; Actor boxes
+  {:block/created-at 1768611047551
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "box-user"
+     :type "box"
+     :label "Resource Owner\n(User)"
+     :point [80 120]
+     :size [200 120]
+     :borderRadius 2
+     :stroke "blue"
+     :strokeWidth 2
+     :strokeType "line"
+     :fill "blue"
+     :noFill false
+     :opacity 1
+     :fontSize 24
+     :fontWeight 700
+     :italic false
+     :refs []
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 1
+     :nonce 1768611047551}}
+   :block/updated-at 1768611047551}
+  
+  {:block/created-at 1768611047552
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "box-client"
+     :type "box"
+     :label "Client Application\n(Your App)"
+     :point [400 120]
+     :size [200 120]
+     :borderRadius 2
+     :stroke "green"
+     :strokeWidth 2
+     :strokeType "line"
+     :fill "green"
+     :noFill false
+     :opacity 1
+     :fontSize 24
+     :fontWeight 700
+     :italic false
+     :refs []
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 2
+     :nonce 1768611047552}}
+   :block/updated-at 1768611047552}
+  
+  {:block/created-at 1768611047553
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "box-authserver"
+     :type "box"
+     :label "Authorization Server\n(Google, GitHub, etc)"
+     :point [720 120]
+     :size [240 120]
+     :borderRadius 2
+     :stroke "purple"
+     :strokeWidth 2
+     :strokeType "line"
+     :fill "purple"
+     :noFill false
+     :opacity 1
+     :fontSize 24
+     :fontWeight 700
+     :italic false
+     :refs []
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 3
+     :nonce 1768611047553}}
+   :block/updated-at 1768611047553}
+  
+  {:block/created-at 1768611047554
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "box-resource"
+     :type "box"
+     :label "Resource Server\n(Google API, GitHub API)"
+     :point [1040 120]
+     :size [240 120]
+     :borderRadius 2
+     :stroke "red"
+     :strokeWidth 2
+     :strokeType "line"
+     :fill "red"
+     :noFill false
+     :opacity 1
+     :fontSize 24
+     :fontWeight 700
+     :italic false
+     :refs []
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 4
+     :nonce 1768611047554}}
+   :block/updated-at 1768611047554}
+  
+  ; Step 1: User clicks login
+  {:block/created-at 1768611047555
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "arrow-1"
+     :type "line"
+     :point [180 280]
+     :strokeType "line"
+     :strokeWidth 1
+     :stroke ""
+     :fill ""
+     :noFill true
+     :opacity 1
+     :label ""
+     :fontSize 20
+     :fontWeight 700
+     :italic false
+     :refs []
+     :parentId "page-oauth2-uuid"
+     :index 5
+     :nonce 1768611047555
+     :handles
+     {:start
+      {:id "start"
+       :canBind true
+       :point [0 0]
+       :bindingId "binding-1-start"}
+      :end
+      {:id "end"
+       :canBind true
+       :point [250 0]
+       :bindingId "binding-1-end"}}
+     :decorations
+     {:end "arrow"}}}
+   :block/updated-at 1768611047555}
+  
+  {:block/created-at 1768611047556
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "label-1"
+     :type "text"
+     :text "1. Clicks Login"
+     :point [240 260]
+     :size [140 30]
+     :isSizeLocked true
+     :stroke ""
+     :strokeWidth 2
+     :fill ""
+     :noFill true
+     :opacity 1
+     :fontSize 16
+     :fontFamily "var(--ls-font-family)"
+     :fontWeight 400
+     :italic false
+     :lineHeight 1.2
+     :padding 4
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 6
+     :nonce 1768611047556}}
+   :block/updated-at 1768611047556}
+  
+  ; Step 2: Redirect to authorization server
+  {:block/created-at 1768611047557
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "arrow-2"
+     :type "line"
+     :point [500 280]
+     :strokeType "line"
+     :strokeWidth 1
+     :stroke ""
+     :fill ""
+     :noFill true
+     :opacity 1
+     :label ""
+     :fontSize 20
+     :fontWeight 700
+     :italic false
+     :refs []
+     :parentId "page-oauth2-uuid"
+     :index 7
+     :nonce 1768611047557
+     :handles
+     {:start
+      {:id "start"
+       :canBind true
+       :point [0 0]
+       :bindingId "binding-2-start"}
+      :end
+      {:id "end"
+       :canBind true
+       :point [250 0]
+       :bindingId "binding-2-end"}}
+     :decorations
+     {:end "arrow"}}}
+   :block/updated-at 1768611047557}
+  
+  {:block/created-at 1768611047558
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "label-2"
+     :type "text"
+     :text "2. Redirects to Auth Server"
+     :point [540 260]
+     :size [160 30]
+     :isSizeLocked true
+     :stroke ""
+     :strokeWidth 2
+     :fill ""
+     :noFill true
+     :opacity 1
+     :fontSize 16
+     :fontFamily "var(--ls-font-family)"
+     :fontWeight 400
+     :italic false
+     :lineHeight 1.2
+     :padding 4
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 8
+     :nonce 1768611047558}}
+   :block/updated-at 1768611047558}
+  
+  ; Step 3: User logs in & grants permission
+  {:block/created-at 1768611047559
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "box-consent"
+     :type "box"
+     :label "User Grants\nPermission"
+     :point [740 300]
+     :size [200 100]
+     :borderRadius 2
+     :stroke ""
+     :strokeWidth 2
+     :strokeType "line"
+     :fill ""
+     :noFill true
+     :opacity 1
+     :fontSize 18
+     :fontWeight 400
+     :italic true
+     :refs []
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 9
+     :nonce 1768611047559}}
+   :block/updated-at 1768611047559}
+  
+  ; Step 4: Auth code sent back
+  {:block/created-at 1768611047560
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "arrow-3"
+     :type "line"
+     :point [740 420]
+     :strokeType "dashed"
+     :strokeWidth 1
+     :stroke ""
+     :fill ""
+     :noFill true
+     :opacity 1
+     :label ""
+     :fontSize 20
+     :fontWeight 700
+     :italic false
+     :refs []
+     :parentId "page-oauth2-uuid"
+     :index 10
+     :nonce 1768611047560
+     :handles
+     {:start
+      {:id "start"
+       :canBind true
+       :point [0 0]
+       :bindingId "binding-3-start"}
+      :end
+      {:id "end"
+       :canBind true
+       :point [0 -250]
+       :bindingId "binding-3-end"}}
+     :decorations
+     {:end "arrow"}}}
+   :block/updated-at 1768611047560}
+  
+  {:block/created-at 1768611047561
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "label-3"
+     :type "text"
+     :text "4. Authorization Code"
+     :point [750 370]
+     :size [160 30]
+     :isSizeLocked true
+     :stroke ""
+     :strokeWidth 2
+     :fill ""
+     :noFill true
+     :opacity 1
+     :fontSize 16
+     :fontFamily "var(--ls-font-family)"
+     :fontWeight 400
+     :italic false
+     :lineHeight 1.2
+     :padding 4
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 11
+     :nonce 1768611047561}}
+   :block/updated-at 1768611047561}
+  
+  ; Step 5: Client exchanges code for token
+  {:block/created-at 1768611047562
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "arrow-4"
+     :type "line"
+     :point [500 480]
+     :strokeType "line"
+     :strokeWidth 1
+     :stroke ""
+     :fill ""
+     :noFill true
+     :opacity 1
+     :label ""
+     :fontSize 20
+     :fontWeight 700
+     :italic false
+     :refs []
+     :parentId "page-oauth2-uuid"
+     :index 12
+     :nonce 1768611047562
+     :handles
+     {:start
+      {:id "start"
+       :canBind true
+       :point [0 0]
+       :bindingId "binding-4-start"}
+      :end
+      {:id "end"
+       :canBind true
+       :point [250 0]
+       :bindingId "binding-4-end"}}
+     :decorations
+     {:end "arrow"}}}
+   :block/updated-at 1768611047562}
+  
+  {:block/created-at 1768611047563
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "label-4"
+     :type "text"
+     :text "5. Code + Secret → Token"
+     :point [540 460]
+     :size [160 30]
+     :isSizeLocked true
+     :stroke ""
+     :strokeWidth 2
+     :fill ""
+     :noFill true
+     :opacity 1
+     :fontSize 16
+     :fontFamily "var(--ls-font-family)"
+     :fontWeight 400
+     :italic false
+     :lineHeight 1.2
+     :padding 4
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 13
+     :nonce 1768611047563}}
+   :block/updated-at 1768611047563}
+  
+  ; Step 6: Access token to resource server
+  {:block/created-at 1768611047564
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "arrow-5"
+     :type "line"
+     :point [600 500]
+     :strokeType "line"
+     :strokeWidth 1
+     :stroke ""
+     :fill ""
+     :noFill true
+     :opacity 1
+     :label ""
+     :fontSize 20
+     :fontWeight 700
+     :italic false
+     :refs []
+     :parentId "page-oauth2-uuid"
+     :index 14
+     :nonce 1768611047564
+     :handles
+     {:start
+      {:id "start"
+       :canBind true
+       :point [0 0]
+       :bindingId "binding-5-start"}
+      :end
+      {:id "end"
+       :canBind true
+       :point [440 0]
+       :bindingId "binding-5-end"}}
+     :decorations
+     {:end "arrow"}}}
+   :block/updated-at 1768611047564}
+  
+  {:block/created-at 1768611047565
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "label-5"
+     :type "text"
+     :text "6. Access Token"
+     :point [780 480]
+     :size [140 30]
+     :isSizeLocked true
+     :stroke ""
+     :strokeWidth 2
+     :fill ""
+     :noFill true
+     :opacity 1
+     :fontSize 16
+     :fontFamily "var(--ls-font-family)"
+     :fontWeight 400
+     :italic false
+     :lineHeight 1.2
+     :padding 4
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 15
+     :nonce 1768611047565}}
+   :block/updated-at 1768611047565}
+  
+  ; Step 7: Resource returned
+  {:block/created-at 1768611047566
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "arrow-6"
+     :type "line"
+     :point [1040 520]
+     :strokeType "dashed"
+     :strokeWidth 1
+     :stroke ""
+     :fill ""
+     :noFill true
+     :opacity 1
+     :label ""
+     :fontSize 20
+     :fontWeight 700
+     :italic false
+     :refs []
+     :parentId "page-oauth2-uuid"
+     :index 16
+     :nonce 1768611047566
+     :handles
+     {:start
+      {:id "start"
+       :canBind true
+       :point [0 0]
+       :bindingId "binding-6-start"}
+      :end
+      {:id "end"
+       :canBind true
+       :point [-440 0]
+       :bindingId "binding-6-end"}}
+     :decorations
+     {:end "arrow"}}}
+   :block/updated-at 1768611047566}
+  
+  {:block/created-at 1768611047567
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "label-6"
+     :type "text"
+     :text "7. User Data"
+     :point [900 500]
+     :size [130 30]
+     :isSizeLocked true
+     :stroke ""
+     :strokeWidth 2
+     :fill ""
+     :noFill true
+     :opacity 1
+     :fontSize 16
+     :fontFamily "var(--ls-font-family)"
+     :fontWeight 400
+     :italic false
+     :lineHeight 1.2
+     :padding 4
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 17
+     :nonce 1768611047567}}
+   :block/updated-at 1768611047567}
+  
+  ; Key points box
+  {:block/created-at 1768611047568
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "box-keypoints"
+     :type "box"
+     :label "Key Points:"
+     :point [80 600]
+     :size [1200 180]
+     :borderRadius 2
+     :stroke "orange"
+     :strokeWidth 2
+     :strokeType "line"
+     :fill ""
+     :noFill true
+     :opacity 1
+     :fontSize 20
+     :fontWeight 700
+     :italic false
+     :refs []
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 18
+     :nonce 1768611047568}}
+   :block/updated-at 1768611047568}
+  
+  {:block/created-at 1768611047569
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "text-keypoints"
+     :type "text"
+     :text "• OAuth 2.0 is for AUTHORIZATION (access to resources)
+• Authorization code never exposed to browser - sent via backend
+• Client secret kept secure on backend server
+• Access token grants limited access for specific duration
+• User never shares password with third-party app"
+     :point [100 630]
+     :size [1160 140]
+     :isSizeLocked true
+     :stroke ""
+     :strokeWidth 2
+     :fill ""
+     :noFill true
+     :opacity 1
+     :fontSize 16
+     :fontFamily "var(--ls-font-family)"
+     :fontWeight 400
+     :italic false
+     :lineHeight 1.4
+     :padding 4
+     :scale [1 1]
+     :scaleLevel "md"
+     :parentId "page-oauth2-uuid"
+     :index 19
+     :nonce 1768611047569}}
+   :block/updated-at 1768611047569})
+ 
+ :pages (
+  {:block/uuid #uuid "550e8400-e29b-41d4-a716-446655440001"
+   :block/properties
+   {:ls-type :whiteboard-page
+    :logseq.tldraw.page
+    {:id "page-oauth2-uuid"
+     :name "OAuth2-Flow"
+     :bindings
+     {; Arrow 1
+      :binding-1-start
+      {:id "binding-1-start"
+       :type "line"
+       :fromId "arrow-1"
+       :toId "box-user"
+       :handleId "start"
+       :point [1 0.5]
+       :distance 4}
+      :binding-1-end
+      {:id "binding-1-end"
+       :type "line"
+       :fromId "arrow-1"
+       :toId "box-client"
+       :handleId "end"
+       :point [0 0.5]
+       :distance 4}
+      ; Arrow 2
+      :binding-2-start
+      {:id "binding-2-start"
+       :type "line"
+       :fromId "arrow-2"
+       :toId "box-client"
+       :handleId "start"
+       :point [1 0.5]
+       :distance 4}
+      :binding-2-end
+      {:id "binding-2-end"
+       :type "line"
+       :fromId "arrow-2"
+       :toId "box-authserver"
+       :handleId "end"
+       :point [0 0.5]
+       :distance 4}
+      ; Arrow 3
+      :binding-3-start
+      {:id "binding-3-start"
+       :type "line"
+       :fromId "arrow-3"
+       :toId "box-authserver"
+       :handleId "start"
+       :point [0.5 1]
+       :distance 4}
+      :binding-3-end
+      {:id "binding-3-end"
+       :type "line"
+       :fromId "arrow-3"
+       :toId "box-client"
+       :handleId "end"
+       :point [0.5 1]
+       :distance 4}
+      ; Arrow 4
+      :binding-4-start
+      {:id "binding-4-start"
+       :type "line"
+       :fromId "arrow-4"
+       :toId "box-client"
+       :handleId "start"
+       :point [1 0.5]
+       :distance 4}
+      :binding-4-end
+      {:id "binding-4-end"
+       :type "line"
+       :fromId "arrow-4"
+       :toId "box-authserver"
+       :handleId "end"
+       :point [0 0.5]
+       :distance 4}
+      ; Arrow 5
+      :binding-5-start
+      {:id "binding-5-start"
+       :type "line"
+       :fromId "arrow-5"
+       :toId "box-client"
+       :handleId "start"
+       :point [1 0.5]
+       :distance 4}
+      :binding-5-end
+      {:id "binding-5-end"
+       :type "line"
+       :fromId "arrow-5"
+       :toId "box-resource"
+       :handleId "end"
+       :point [0 0.5]
+       :distance 4}
+      ; Arrow 6
+      :binding-6-start
+      {:id "binding-6-start"
+       :type "line"
+       :fromId "arrow-6"
+       :toId "box-resource"
+       :handleId "start"
+       :point [0 0.5]
+       :distance 4}
+      :binding-6-end
+      {:id "binding-6-end"
+       :type "line"
+       :fromId "arrow-6"
+       :toId "box-client"
+       :handleId "end"
+       :point [1 0.5]
+       :distance 4}}
+     :nonce 1
+     :assets []
+     :shapes-index ["title-oauth2" "box-user" "box-client" "box-authserver" "box-resource" 
+                    "arrow-1" "label-1" "arrow-2" "label-2" "box-consent" 
+                    "arrow-3" "label-3" "arrow-4" "label-4" "arrow-5" "label-5" 
+                    "arrow-6" "label-6" "box-keypoints" "text-keypoints"]}}
+   :block/updated-at 1768611047569
+   :block/created-at 1768611047550
+   :block/type "whiteboard"
+   :block/name "OAuth2-Flow"
+   :block/original-name "OAuth2-Flow"})}
