@@ -88,25 +88,200 @@ Start with an empty whiteboard structure:
 ### Step 3: Generate Required Values
 
 **UUID Generation:**
-- Use any UUID v4 generator
+- Use any UUID v4 generator (or Node.js: `crypto.randomUUID()`)
 - Ensure consistency: the same UUID appears in `:block/uuid`, `:id`, and shape `:parentId`
 - Format: `#uuid "550e8400-e29b-41d4-a716-446655440000"`
 
-**Timestamp Generation:**
-- Use milliseconds since Unix epoch (January 1, 1970)
-- Example: `1768611047550` (January 17, 2025)
-- Both `:block/created-at` and `:block/updated-at` should match initially
+**Timestamp Generation - CRITICAL:**
+- Use **milliseconds since Unix epoch** (January 1, 1970) - NOT seconds!
+- Generate with current time: `Date.now()` in JavaScript
+- Example: `1768625722664` (January 17, 2026 at 4:55 AM UTC)
+- **Both `:block/created-at` and `:block/updated-at` should match initially**
+- Each shape should have a **different timestamp** (incrementally newer) to avoid conflicts
+  - Example progression: `1768625462664`, `1768625472664`, `1768625482664`, etc.
+  - Increment by 10000ms (~10 seconds) between shapes for clarity
 
-### Step 4: Reference the Page UUID
+**Why Timestamp Matters:**
+- If timestamps are from 1970 (like `1768611047550`), LogSeq displays "created 56 years ago"
+- This happens when the timestamp is too old relative to current time
+- Always use **current timestamp** to ensure metadata displays correctly
 
-The page UUID must match everywhere it appears:
-- `:block/uuid` - page identifier
-- `:id` inside `:logseq.tldraw.page` - internal reference
-- `:parentId` in each shape - links shapes to their parent page
+**Timestamp Calculation Tool:**
+```javascript
+// Generate current timestamp in milliseconds
+const now = Date.now();
+console.log(now); // e.g., 1768625722664
+
+// For multiple shapes, increment by 10-60 seconds
+const timestamps = Array(10).fill(0).map((_, i) => now - 100000 + i * 10000);
+```
+
+### Step 4: Reference the Page UUID Correctly
+
+**CRITICAL:** The page UUID must be used correctly in THREE different places with THREE different formats:
+
+1. **`:block/uuid`** (with `#uuid` prefix) - page identifier in the `:pages` block
+   - Format: `#uuid "550e8400-e29b-41d4-a716-446655440004"`
+   
+2. **`:id` inside `:logseq.tldraw.page`** (plain string) - internal tldraw reference
+   - Format: `"550e8400-e29b-41d4-a716-446655440004"` (NO `#uuid` prefix!)
+   
+3. **`:parentId` in EVERY shape** (plain string) - links shapes to their parent page
+   - Format: `"550e8400-e29b-41d4-a716-446655440004"` (NO `#uuid` prefix!)
+
+**Common Mistake - Using a placeholder string:**
+
+❌ **WRONG:**
+```clojure
+:pages ({:block/uuid #uuid "550e8400-e29b-41d4-a716-446655440004"
+         :block/properties
+         {:ls-type :whiteboard-page
+          :logseq.tldraw.page
+          {:id "page-001-uuid"              ; WRONG - not the actual UUID!
+           :name "my-whiteboard"}}})
+
+{:block/properties
+ {:ls-type :whiteboard-shape
+  :logseq.tldraw.shape
+  {:id "box-001"
+   :parentId "page-001-uuid"               ; WRONG - not the actual UUID!
+   }}}
+```
+
+✅ **CORRECT:**
+```clojure
+:pages ({:block/uuid #uuid "550e8400-e29b-41d4-a716-446655440004"
+         :block/properties
+         {:ls-type :whiteboard-page
+          :logseq.tldraw.page
+          {:id "550e8400-e29b-41d4-a716-446655440004"  ; CORRECT - actual UUID string
+           :name "my-whiteboard"}}})
+
+{:block/properties
+ {:ls-type :whiteboard-shape
+  :logseq.tldraw.shape
+  {:id "box-001"
+   :parentId "550e8400-e29b-41d4-a716-446655440004"   ; CORRECT - actual UUID string
+   }}}
+```
+
+**Why this matters:** LogSeq uses the `:parentId` to link shapes to their parent page. If the `:parentId` doesn't match the page's `:id` in `:logseq.tldraw.page`, the shapes won't be recognized as belonging to that page, and **bindings will not work**.
 
 ---
 
-## Part 2: Adding Shapes to Whiteboard
+## Part 1.5: Understanding Timestamps and Metadata
+
+### LogSeq Metadata Fields
+
+Every LogSeq whiteboard page has metadata that affects how it displays in the graph:
+
+```clojure
+:pages (
+ {:block/uuid #uuid "228d6029-0710-4a4b-943a-cc9dab11092f"
+  :block/properties {...}
+  :block/updated-at 1768625722664    ; Last modification time
+  :block/created-at 1768625462664    ; Creation time
+  :block/type "whiteboard"           ; Always "whiteboard" for diagram files
+  :block/name "OAuth2-Authorization-Code-Flow"  ; Display name in LogSeq
+  :block/original-name "OAuth2-Authorization-Code-Flow"})
+```
+
+### Timestamp Metadata Issues
+
+**Problem: "Created 56 years ago"**
+
+If your whiteboards show "created 56 years ago" in LogSeq metadata, it's because:
+
+1. The timestamps are too old (e.g., `1768611047550` from past sessions)
+2. LogSeq calculates time difference from current date
+3. Old timestamps = large gap = appears ancient
+
+**Solution:**
+
+Always use **current timestamps** when generating new whiteboards:
+
+```javascript
+// ✅ CORRECT: Use current time
+const now = Date.now();
+console.log(now);  // ~1768625722664 (January 2026)
+
+// ❌ WRONG: Using old static timestamps
+const old = 1768611047550;  // This is from past date
+```
+
+### Shape Timestamp Strategy
+
+For a cohesive diagram, use timestamps that are **close together** but **slightly different**:
+
+```clojure
+; All created in same session, moments apart
+:block/created-at 1768625462664  ; Page created
+...shapes...
+:block/created-at 1768625462664  ; First shape (same time)
+:block/created-at 1768625472664  ; Second shape (10 seconds later)
+:block/created-at 1768625482664  ; Third shape (20 seconds later)
+:block/created-at 1768625492664  ; Fourth shape (30 seconds later)
+```
+
+### Calculating Current Timestamp
+
+**JavaScript:**
+```javascript
+const now = Date.now();  // Current time in milliseconds
+```
+
+**Node.js One-liner:**
+```bash
+node -e "console.log(Date.now())"
+```
+
+**Manual Calculation:**
+- Current Unix timestamp (seconds): `date +%s`
+- Multiply by 1000 to get milliseconds: `date +%s000`
+
+### Full Example with Correct Timestamps
+
+```clojure
+{:blocks (
+  {:block/created-at 1768625462664  ; Page creation time
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "title-shape"
+     :parentId "228d6029-0710-4a4b-943a-cc9dab11092f"}}
+   :block/updated-at 1768625462664}
+  
+  {:block/created-at 1768625472664  ; 10 seconds later
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "box-shape-1"
+     :parentId "228d6029-0710-4a4b-943a-cc9dab11092f"}}
+   :block/updated-at 1768625472664}
+  
+  {:block/created-at 1768625482664  ; 20 seconds later
+   :block/properties
+   {:ls-type :whiteboard-shape
+    :logseq.tldraw.shape
+    {:id "box-shape-2"
+     :parentId "228d6029-0710-4a4b-943a-cc9dab11092f"}}
+   :block/updated-at 1768625482664})
+ 
+ :pages (
+  {:block/uuid #uuid "228d6029-0710-4a4b-943a-cc9dab11092f"
+   :block/properties
+   {:ls-type :whiteboard-page
+    :logseq.tldraw.page
+    {:id "228d6029-0710-4a4b-943a-cc9dab11092f"
+     :name "My-Diagram"}}
+   :block/updated-at 1768625482664  ; Page last updated (should be time of last shape)
+   :block/created-at 1768625462664  ; Page first created
+   :block/type "whiteboard"
+   :block/name "My-Diagram"
+   :block/original-name "My-Diagram"})}
+```
+
+---
 
 ### Shape Block Structure
 
@@ -351,56 +526,129 @@ Control arrowhead appearance with `:decorations`:
 1. **Generate UUIDs**: Create unique IDs for line shape, start binding, and end binding
 2. **Position line roughly**: Set `:point` near the midpoint between shapes
 3. **Calculate handle offsets**: `:handles :start :point` and `:end :point` are relative to line `:point`
+   - Formula: `handle_offset = target_position - line_point`
+   - Example: Line at [320 455], target at [480 335] → offset = [160 -120]
 4. **Create bindings**: Add both bindings to page `:bindings` map with matching IDs
 5. **Reference target shapes**: Use actual shape UUIDs in `:toId`
 6. **Set attachment points**: Use `[0.5 0.5]` for center, `[0 0.5]` for left-center, `[1 0.5]` for right-center, etc.
+7. **Verify coordinates**: line `:point` + handle `:point` should roughly equal target shape edge position
 
-#### CRITICAL: Binding Lines to the Correct Shapes
+---
 
-**Common Mistake:** When creating flow diagrams with multiple boxes representing steps, developers often try to bind connector lines to the wrong shapes.
+#### CRITICAL: How Line Bindings Actually Work
 
-**Example Problem:**
+**Understanding the Binding System:**
+
+Line bindings in LogSeq whiteboards work through a **coordinate-based attachment system**. Each line has TWO handles (start and end), and each handle needs:
+
+1. **A position offset** (`:point` in the handle) relative to the line's `:point`
+2. **A binding** that references a target shape to attach to
+3. **An attachment point** on the target shape (`:point [x y]` where x,y are 0-1 ratios)
+
+**The Key Insight:** The line's handle `:point` plus the line's base `:point` should roughly equal the position where you want the connection to occur on the target shape.
+
+**Step-by-Step Line Binding Process:**
+
 ```clojure
-; You have these shapes:
-; - "actor-box-1" at [80 160] (top left - represents an actor/entity)
-; - "step-box-1" at [80 320] (middle - represents a step in the flow)
-; - "step-box-2" at [480 320] (middle right - next step)
-; - "arrow-1" connecting step-box-1 to step-box-2
+; Example: Connect "box-step2" at [80 420] to "box-step3" at [480 300]
 
-; ❌ WRONG: Binding arrow to actor boxes instead of step boxes
+; STEP 1: Choose where to position your line
+; Pick a point roughly between the two shapes
+:point [320 455]  ; somewhere in the middle
+
+; STEP 2: Calculate handle offsets
+; For the START handle (connecting to box-step2 at [80 420]):
+; We want to connect to the RIGHT edge of box-step2
+; box-step2 is at [80 420], size [240 70]
+; Right edge center = [80 + 240, 420 + 35] = [320, 455]
+; Offset from line point [320 455] = [320 - 320, 455 - 455] = [0, 0]
+:handles {
+  :start {
+    :point [0 0]  ; This means: line point + [0 0] = [320 455]
+    :bindingId "binding-1-start"}}
+
+; For the END handle (connecting to box-step3 at [480 300]):
+; We want to connect to the LEFT edge of box-step3
+; box-step3 is at [480 300], size [240 70]
+; Left edge center = [480, 300 + 35] = [480, 335]
+; Offset from line point [320 455] = [480 - 320, 335 - 455] = [160, -120]
+:handles {
+  :end {
+    :point [160 -120]  ; This means: line point + [160 -120] = [480 335]
+    :bindingId "binding-1-end"}}
+
+; STEP 3: Create the bindings in :pages :bindings
 :bindings {
-  :binding-arrow-1-start
-  {:fromId "arrow-1"
-   :toId "actor-box-1"    ; WRONG - arrow is near step-box-1, not actor-box-1
-   :handleId "start"}}
-
-; ✅ CORRECT: Binding arrow to the actual step boxes it connects
-:bindings {
-  :binding-arrow-1-start
-  {:fromId "arrow-1"
-   :toId "step-box-1"     ; CORRECT - arrow actually connects these step boxes
-   :handleId "start"}
-  :binding-arrow-1-end
-  {:fromId "arrow-1"
-   :toId "step-box-2"
-   :handleId "end"}}
+  :binding-1-start
+  {:id "binding-1-start"
+   :type "line"
+   :fromId "arrow-1"
+   :toId "box-step2"        ; Must be the ACTUAL shape ID you want to connect
+   :handleId "start"
+   :point [1 0.5]            ; [1 0.5] = right edge, middle (1=right, 0.5=center vertically)
+   :distance 4}
+  
+  :binding-1-end
+  {:id "binding-1-end"
+   :type "line"
+   :fromId "arrow-1"
+   :toId "box-step3"         ; Must be the ACTUAL shape ID you want to connect
+   :handleId "end"
+   :point [0 0.5]             ; [0 0.5] = left edge, middle (0=left, 0.5=center vertically)
+   :distance 4}}
 ```
 
-**Rule of Thumb:**
-- Look at the arrow's `:point` position (e.g., `[320 360]`)
-- Check which shapes are physically near that position
-- Bind the arrow to those nearby shapes, NOT to shapes that are far away
-- If an arrow is between two boxes at Y=320-400, bind it to those boxes, not to boxes at Y=160
+**Attachment Point Reference:**
 
-**Visual Example:**
+The `:point [x y]` in the binding specifies WHERE on the target shape to attach:
+
+| Point Value | Location on Shape |
+|-------------|-------------------|
+| `[0 0]` | Top-left corner |
+| `[0.5 0]` | Top-center |
+| `[1 0]` | Top-right corner |
+| `[0 0.5]` | Left-center |
+| `[0.5 0.5]` | Center |
+| `[1 0.5]` | Right-center |
+| `[0 1]` | Bottom-left corner |
+| `[0.5 1]` | Bottom-center |
+| `[1 1]` | Bottom-right corner |
+
+**Common Mistakes to Avoid:**
+
+❌ **MISTAKE 1: Wrong shape ID in binding**
+```clojure
+; You have arrow-1 at [320 455] connecting box-step2 to box-step3
+; But you bind to box-step1 instead of box-step2
+:binding-1-start {:toId "box-step1"}  ; WRONG - not the shape you want!
 ```
-Actor Box (Y=160)         Actor Box (Y=160)
-     ↓                          ↓
-Step Box 1 (Y=320) ----→ Step Box 2 (Y=320)
-                   ↑
-              Arrow should bind to Step Boxes,
-              NOT Actor Boxes!
+
+❌ **MISTAKE 2: Incorrect handle offset calculation**
+```clojure
+; Line at [320 455], connecting to box at [480 335]
+; Offset should be [160 -120]
+:handles {:end {:point [0 0]}}  ; WRONG - this would point to [320 455] not [480 335]
 ```
+
+❌ **MISTAKE 3: Mismatched binding IDs**
+```clojure
+; Handle references binding-1-start
+:handles {:start {:bindingId "binding-1-start"}}
+; But you create binding-start-1 instead
+:bindings {:binding-start-1 {...}}  ; WRONG - ID doesn't match!
+```
+
+**Troubleshooting Checklist:**
+
+1. ✓ **MOST COMMON ISSUE:** Is `:parentId` set to the actual UUID string (not a placeholder)?
+   - Check: All shape `:parentId` values = page `:id` in `:logseq.tldraw.page`
+   - Example: `"550e8400-e29b-41d4-a716-446655440004"` NOT `"page-001-uuid"`
+2. ✓ Are handle `:point` offsets calculated correctly?
+   - Line `:point` + handle `:point` should equal target location
+3. ✓ Do binding IDs match between handle `:bindingId` and `:bindings` key?
+4. ✓ Is `:toId` the correct shape ID you want to connect to?
+5. ✓ Is the attachment `:point [x y]` on the correct edge (0=left/top, 1=right/bottom)?
+6. ✓ Are both bindings (start and end) present in `:bindings` map?
 
 ---
 
@@ -1111,13 +1359,23 @@ Common color hex values for whiteboard shapes:
 - Check that `:feature/enable-whiteboards? true` in `logseq/config.edn`
 - Verify file is in `whiteboards/` directory with `.edn` extension
 - Validate EDN syntax (no mismatched brackets or quotes)
-- Ensure page UUID matches in `:block/uuid`, `:id`, and all `:parentId` fields
+- **CRITICAL:** Ensure page `:id` in `:logseq.tldraw.page` is the actual UUID string (e.g., `"550e8400-e29b-41d4-a716-446655440004"`), NOT a placeholder like `"page-001-uuid"`
+- Verify all shape `:parentId` values match the page `:id` exactly
 
 **Shapes not visible?**
 - Check shape `:point` and `:size` are within viewport bounds
 - Verify `:opacity` is > 0
 - Ensure shape ID is in page's `:shapes-index` array
 - Check `:type` is a valid shape type
+- **CRITICAL:** Verify shape `:parentId` matches page `:id` in `:logseq.tldraw.page`
+
+**Lines/Arrows not connecting to shapes?**
+- **MOST COMMON ISSUE:** Check that `:parentId` in ALL shapes equals the page `:id` (the actual UUID string)
+  - Wrong: `:parentId "page-001-uuid"` when page `:id "550e8400..."`
+  - Right: `:parentId "550e8400-e29b-41d4-a716-446655440004"` matching page `:id`
+- Verify bindings exist in `:bindings` map with matching `:bindingId` from handles
+- Check `:toId` references valid shape IDs that exist in `:blocks`
+- Verify handle offsets are calculated correctly (line `:point` + handle `:point` = target position)
 
 **Styling not applied?**
 - Validate color hex values (must be proper 6-digit hex or empty string)

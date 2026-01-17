@@ -945,8 +945,8 @@ then prove ownership with original ticket later."
    :block/properties
    {:ls-type :whiteboard-page
     :logseq.tldraw.page
-     {:id "550e8400-e29b-41d4-a716-446655440004"
-      :name "PKCE-Flow-Fixed"
+    {:id "page-pkce-uuid"
+     :name "PKCE-Flow-Fixed"
      :bindings
      {; Arrow 1: box-step2 to box-step3
       :binding-1-pkce-start

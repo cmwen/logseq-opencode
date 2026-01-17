@@ -23,7 +23,7 @@
      :padding 4
      :scale [1 1]
      :scaleLevel "xxl"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 0
      :nonce 1768611247550}}
    :block/updated-at 1768611247550}
@@ -52,7 +52,7 @@
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 1
      :nonce 1768611247551}}
    :block/updated-at 1768611247551}
@@ -80,7 +80,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 2
      :nonce 1768611247552}}
    :block/updated-at 1768611247552}
@@ -107,7 +107,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 3
      :nonce 1768611247553}}
    :block/updated-at 1768611247553}
@@ -135,7 +135,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 4
      :nonce 1768611247554}}
    :block/updated-at 1768611247554}
@@ -163,7 +163,7 @@
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 5
      :nonce 1768611247555}}
    :block/updated-at 1768611247555}
@@ -191,7 +191,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 6
      :nonce 1768611247556}}
    :block/updated-at 1768611247556}
@@ -219,7 +219,7 @@
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 7
      :nonce 1768611247557}}
    :block/updated-at 1768611247557}
@@ -247,7 +247,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 8
      :nonce 1768611247560}}
    :block/updated-at 1768611247560}
@@ -271,7 +271,7 @@
      :fontWeight 700
      :italic false
      :refs []
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 9
      :nonce 1768611247558
      :handles
@@ -312,7 +312,7 @@
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 10
      :nonce 1768611247559}}
    :block/updated-at 1768611247559}
@@ -340,7 +340,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 11
      :nonce 1768611247561}}
    :block/updated-at 1768611247561}
@@ -368,7 +368,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 12
      :nonce 1768611247563}}
    :block/updated-at 1768611247563}
@@ -392,7 +392,7 @@
      :fontWeight 700
      :italic false
      :refs []
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 13
      :nonce 1768611247562
      :handles
@@ -433,7 +433,7 @@
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 14
      :nonce 1768611247564}}
    :block/updated-at 1768611247564}
@@ -461,7 +461,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 15
      :nonce 1768611247565}}
    :block/updated-at 1768611247565}
@@ -489,7 +489,7 @@
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 16
      :nonce 1768611247566}}
    :block/updated-at 1768611247566}
@@ -513,7 +513,7 @@
      :fontWeight 700
      :italic false
      :refs []
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 17
      :nonce 1768611247567
      :handles
@@ -554,7 +554,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 18
      :nonce 1768611247568}}
    :block/updated-at 1768611247568}
@@ -582,7 +582,7 @@
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 19
      :nonce 1768611247569}}
    :block/updated-at 1768611247569}
@@ -610,7 +610,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 20
      :nonce 1768611247571}}
    :block/updated-at 1768611247571}
@@ -634,7 +634,7 @@
      :fontWeight 700
      :italic false
      :refs []
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 21
      :nonce 1768611247570
      :handles
@@ -675,7 +675,7 @@
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 22
      :nonce 1768611247572}}
    :block/updated-at 1768611247572}
@@ -704,7 +704,7 @@
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 23
      :nonce 1768611247573}}
    :block/updated-at 1768611247573}
@@ -731,7 +731,7 @@
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 24
      :nonce 1768611247574}}
    :block/updated-at 1768611247574}
@@ -761,7 +761,7 @@ codes can be intercepted by malicious apps."
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 25
      :nonce 1768611247575}}
    :block/updated-at 1768611247575}
@@ -788,7 +788,7 @@ codes can be intercepted by malicious apps."
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 26
      :nonce 1768611247576}}
    :block/updated-at 1768611247576}
@@ -820,7 +820,7 @@ codes can be intercepted by malicious apps."
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 27
      :nonce 1768611247577}}
    :block/updated-at 1768611247577}
@@ -848,7 +848,7 @@ codes can be intercepted by malicious apps."
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 28
      :nonce 1768611247578}}
    :block/updated-at 1768611247578}
@@ -877,7 +877,7 @@ then prove ownership with original ticket later."
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 29
      :nonce 1768611247579}}
    :block/updated-at 1768611247579}
@@ -905,7 +905,7 @@ then prove ownership with original ticket later."
      :refs []
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 30
      :nonce 1768611247580}}
    :block/updated-at 1768611247580}
@@ -935,7 +935,7 @@ then prove ownership with original ticket later."
      :padding 4
      :scale [1 1]
      :scaleLevel "md"
-      :parentId "550e8400-e29b-41d4-a716-446655440004"
+     :parentId "page-pkce-uuid"
      :index 31
      :nonce 1768611247581}}
    :block/updated-at 1768611247581})
@@ -945,8 +945,8 @@ then prove ownership with original ticket later."
    :block/properties
    {:ls-type :whiteboard-page
     :logseq.tldraw.page
-     {:id "550e8400-e29b-41d4-a716-446655440004"
-      :name "PKCE-Flow-Fixed"
+    {:id "page-pkce-uuid"
+     :name "PKCE-Flow-Fixed"
      :bindings
      {; Arrow 1: box-step2 to box-step3
       :binding-1-pkce-start
