@@ -355,6 +355,53 @@ Control arrowhead appearance with `:decorations`:
 5. **Reference target shapes**: Use actual shape UUIDs in `:toId`
 6. **Set attachment points**: Use `[0.5 0.5]` for center, `[0 0.5]` for left-center, `[1 0.5]` for right-center, etc.
 
+#### CRITICAL: Binding Lines to the Correct Shapes
+
+**Common Mistake:** When creating flow diagrams with multiple boxes representing steps, developers often try to bind connector lines to the wrong shapes.
+
+**Example Problem:**
+```clojure
+; You have these shapes:
+; - "actor-box-1" at [80 160] (top left - represents an actor/entity)
+; - "step-box-1" at [80 320] (middle - represents a step in the flow)
+; - "step-box-2" at [480 320] (middle right - next step)
+; - "arrow-1" connecting step-box-1 to step-box-2
+
+; ❌ WRONG: Binding arrow to actor boxes instead of step boxes
+:bindings {
+  :binding-arrow-1-start
+  {:fromId "arrow-1"
+   :toId "actor-box-1"    ; WRONG - arrow is near step-box-1, not actor-box-1
+   :handleId "start"}}
+
+; ✅ CORRECT: Binding arrow to the actual step boxes it connects
+:bindings {
+  :binding-arrow-1-start
+  {:fromId "arrow-1"
+   :toId "step-box-1"     ; CORRECT - arrow actually connects these step boxes
+   :handleId "start"}
+  :binding-arrow-1-end
+  {:fromId "arrow-1"
+   :toId "step-box-2"
+   :handleId "end"}}
+```
+
+**Rule of Thumb:**
+- Look at the arrow's `:point` position (e.g., `[320 360]`)
+- Check which shapes are physically near that position
+- Bind the arrow to those nearby shapes, NOT to shapes that are far away
+- If an arrow is between two boxes at Y=320-400, bind it to those boxes, not to boxes at Y=160
+
+**Visual Example:**
+```
+Actor Box (Y=160)         Actor Box (Y=160)
+     ↓                          ↓
+Step Box 1 (Y=320) ----→ Step Box 2 (Y=320)
+                   ↑
+              Arrow should bind to Step Boxes,
+              NOT Actor Boxes!
+```
+
 ---
 
 ### Polygon Shapes
